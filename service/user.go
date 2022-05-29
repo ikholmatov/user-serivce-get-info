@@ -37,8 +37,8 @@ func (s *UserService) Create(ctx context.Context, req *pb.User) (*pb.User, error
 	}
 	return user, err
 }
-func (s *UserService) GetByID(ctx context.Context, id *pb.ID) (*pb.User, error) {
-	user, err := s.storage.User().GetByID(id.UserID)
+func (s *UserService) GetByID(ctx context.Context, req *pb.ID) (*pb.User, error) {
+	user, err := s.storage.User().GetByID(req.UserID)
 	if err != nil {
 		s.logger.Error("Error while getting user info", l.Error(err))
 		return nil, status.Error(codes.Internal, "Error insert user")

@@ -35,12 +35,12 @@ func (r *userRepo) GetByID(string1 string) (*pb.User, error) {
 	a := pb.User{}
 	fmt.Println(string1)
 	GetUsers := `SELECT * FROM users WHERE id = $1`
-	err := r.db.QueryRow(GetUsers, string1).Scan(&a.ID, &a.FirstName, &a.LastName, &a.Email, &a.Bio, &a.PhoneNumber, &a.TypeID, &a.Status)
+	err := r.db.QueryRow(GetUsers, string1).Scan(&a.ID, &a.FirstName, &a.LastName, pq.Array(&a.Email), &a.Bio, pq.Array(&a.PhoneNumber), &a.TypeID, &a.Status)
 	if err != nil {
 		log.Panicf("%s\n%s", "Error while geting data from table users", err)
 	}
 	GetAddresses := `SELECT * FROM addresses WHERE UserID = $1`
-	err = r.db.QueryRow(GetAddresses, a.ID).Scan(a.Addr.ID, a.Addr.UserID, a.Addr.Country, a.Addr.City, a.Addr.District, a.Addr.PostalCode)
+	err = r.db.QueryRow(GetAddresses, a.ID).Scan(&a.Addr.ID, &a.Addr.UserID, &a.Addr.Country, &a.Addr.City, &a.Addr.District, &a.Addr.PostalCode)
 	if err != nil {
 		log.Panicf("%s\n%s", "Error while geting data from table addresses", err)
 	}
