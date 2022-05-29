@@ -1,0 +1,30 @@
+syntax="proto3";
+package user;
+
+service UserService{
+  rpc Create(User) returns (User);
+  rpc GetByID(ID) returns (User);
+}
+message ID{
+  string UserID = 1;
+}
+message User{
+  string ID = 1;
+  string FirstName = 2;
+  string LastName = 3;
+  repeated string Email = 4;
+  string Bio = 5;
+  repeated string PhoneNumber = 6;
+  int64 TypeID = 7;
+  bool Status = 8;
+  Address Addr = 9;
+
+}
+message Address{
+  string ID = 1;
+  string UserID = 2;
+  string Country = 3;
+  string City = 4;
+  string District = 5;
+  int64 PostalCode = 6;
+}

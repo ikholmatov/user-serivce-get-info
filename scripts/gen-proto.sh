@@ -3,7 +3,7 @@
 CURRENT_DIR=$(pwd)
 
 protoc -I /usr/local/include \
-       -I $GOPATH/src/github.com/gogo/protobuf/gogoproto \
+       -I $GOPATH/pkg/mod/github.com/gogo/protobuf@v1.3.2/gogoproto \
        -I $CURRENT_DIR/protos/ \
         --gofast_out=plugins=grpc:$CURRENT_DIR/genproto/ \
         $CURRENT_DIR/protos/*.proto;

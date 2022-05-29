@@ -7,6 +7,7 @@ import (
 	"github.com/venomuz/project2/pkg/logger"
 	"github.com/venomuz/project2/service"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 	"net"
 )
 
@@ -37,7 +38,7 @@ func main() {
 	pb.RegisterUserServiceServer(s, userService)
 	log.Info("main: server running",
 		logger.String("port", cfg.RPCPort))
-
+	reflection.Register(s)
 	if err := s.Serve(lis); err != nil {
 		log.Fatal("Error while listening: %v", logger.Error(err))
 	}
