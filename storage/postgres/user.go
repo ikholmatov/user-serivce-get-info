@@ -1,7 +1,6 @@
 package postgres
 
 import (
-	"fmt"
 	"github.com/jmoiron/sqlx"
 	"github.com/lib/pq"
 	pb "github.com/venomuz/project2/genproto"
@@ -41,10 +40,18 @@ func (r *userRepo) GetByID(ID string) (*pb.User, error) {
 
 	GetAddresses := `SELECT id FROM addresses WHERE userid = $1`
 	err = r.db.QueryRow(GetAddresses, ID).Scan(&a.Addr.ID)
-	fmt.Println(a)
 	if err != nil {
 		log.Panicf("%s\n%s", "Error while geting data from table addresses", err)
 	}
 
 	return &a, err
+}
+func (r *userRepo) DeleteAll(ID string) (*pb.GetIdFromUser, error) {
+	_, err := r.db.Exec(`DELETE  FROM users WHERE id = $1`, ID)
+	if err != nil {
+		log.Panicf("%s\n%s", "Error while deleteing data from table users", err)
+	}
+	id := pb.GetIdFromUser{}
+
+	return &id, nil
 }

@@ -4,6 +4,7 @@ package user;
 service UserService{
   rpc Create(User) returns (User);
   rpc GetByID(GetIdFromUser) returns (User);
+  rpc DeleteAll(GetIdFromUser) returns (GetIdFromUser);
 }
 
 message User{
