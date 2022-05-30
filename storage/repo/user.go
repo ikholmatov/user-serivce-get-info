@@ -7,5 +7,5 @@ import (
 //UserStorageI ...
 type UserStorageI interface {
 	Create(*pb.User) (*pb.User, error)
-	GetByID(id string) (*pb.User, error)
+	GetByID(ID string) (*pb.User, error)
 }

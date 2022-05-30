@@ -28,3 +28,4 @@ CREATE TABLE addresses(
       ON DELETE CASCADE
 );
 SELECT u.*, t.Type FROM users u join types t on  t.id = u.TypeID;
+SELECT * FROM addresses WHERE UserID = '81878595-a7d1-4575-94d6-60f5cd0f6a24'
