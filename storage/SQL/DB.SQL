@@ -1,31 +1,33 @@
-CREATE TABLE Types(
-    ID INT NOT NULL PRIMARY KEY,
-    Type VARCHAR(50)
+CREATE TABLE types(
+    id INT NOT NULL PRIMARY KEY,
+    type VARCHAR(50)
 );
 
-CREATE TABLE Users(
-    ID UUID PRIMARY KEY,
-    FirstName VARCHAR(50) NOT NULL,
-    LastName VARCHAR(50) NOT NULL,
-    Email TEXT [] NOT NULL,
-    Bio VARCHAR(50) NOT NULL,
-    PhoneNumber TEXT [] NOT NULL,
-    TypeID INT NOT NULL,
-    Status BOOLEAN NOT NULL,
-    FOREIGN KEY (TypeID)
-    REFERENCES Types(ID)
+CREATE TABLE users(
+    id UUID PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    email TEXT [] NOT NULL,
+    bio VARCHAR(50) NOT NULL,
+    phone_number TEXT [] NOT NULL,
+    type_id INT NOT NULL,
+    status BOOLEAN NOT NULL,
+    FOREIGN KEY (type_id)
+    REFERENCES types(id)
     ON DELETE CASCADE
 );
 CREATE TABLE addresses(
-    ID uuid NOT NULL PRIMARY KEY,
-    UserID uuid,
-    Country VARCHAR(50) NOT NULL,
-    City VARCHAR(50) NOT NULL,
-    District VARCHAR(50) NOT NULL ,
-    PostalCode BIGINT NOT NULL,
-    FOREIGN KEY(UserID)
-      REFERENCES Users(ID)
+    id uuid NOT NULL PRIMARY KEY,
+    user_id uuid,
+    country VARCHAR(50) NOT NULL,
+    city VARCHAR(50) NOT NULL,
+    district VARCHAR(50) NOT NULL ,
+    postal_code BIGINT NOT NULL,
+    FOREIGN KEY(user_id)
+      REFERENCES users(id)
       ON DELETE CASCADE
 );
 SELECT u.*, t.Type FROM users u join types t on  t.id = u.TypeID;
-SELECT * FROM addresses WHERE UserID = '81878595-a7d1-4575-94d6-60f5cd0f6a24'
+SELECT id FROM Users;
+SELECT * FROM addresses;
+SELECT id, city, district, country, postal_code FROM addresses WHERE user_id = '1de759e7-ab11-446f-9d1d-0333936aed4a';

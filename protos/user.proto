@@ -8,25 +8,25 @@ service UserService{
 }
 
 message User{
-  string ID = 1;
-  string FirstName = 2;
-  string LastName = 3;
-  repeated string Email = 4;
-  string Bio = 5;
-  repeated string PhoneNumber = 6;
-  int64 TypeID = 7;
-  bool Status = 8;
-  Address Addr = 9;
+  string id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  repeated string email = 4;
+  string bio = 5;
+  repeated string phone_number = 6;
+  int64 type_id = 7;
+  bool status = 8;
+  Address address = 9;
 
 }
 message Address{
-  string ID = 1;
-  string UserID = 2;
-  string Country = 3;
-  string City = 4;
-  string District = 5;
-  int64 PostalCode = 6;
+  string id = 1;
+  string user_id = 2;
+  string country = 3;
+  string city = 4;
+  string district = 5;
+  int64 postal_code = 6;
 }
 message GetIdFromUser{
-  string ID = 1;
+  string id = 1;
 }

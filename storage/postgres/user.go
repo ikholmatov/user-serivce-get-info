@@ -17,13 +17,13 @@ func NewUserRepo(db *sqlx.DB) *userRepo {
 }
 
 func (r *userRepo) Create(user *pb.User) (*pb.User, error) {
-	UserQuery := `INSERT INTO users VALUES($1,$2,$3,$4,$5,$6,$7,$8)`
-	_, err := r.db.Exec(UserQuery, user.ID, user.FirstName, user.LastName, pq.Array(user.Email), user.Bio, pq.Array(user.PhoneNumber), user.TypeID, user.Status)
+	UserQuery := `INSERT INTO users(id,first_name,last_name,email,bio,phone_number,type_id,status) VALUES($1,$2,$3,$4,$5,$6,$7,$8)`
+	_, err := r.db.Exec(UserQuery, user.Id, user.FirstName, user.LastName, pq.Array(user.Email), user.Bio, pq.Array(user.PhoneNumber), user.TypeId, user.Status)
 	if err != nil {
 		log.Panicf("%s\n%s", "Error while users to table addresses", err)
 	}
-	AddressQuery := `INSERT INTO addresses VALUES($1,$2,$3,$4,$5,$6)`
-	_, err = r.db.Exec(AddressQuery, user.Addr.ID, user.ID, user.Addr.Country, user.Addr.City, user.Addr.District, user.Addr.PostalCode)
+	AddressQuery := `INSERT INTO addresses(id,user_id,country,city,district,postal_code) VALUES($1,$2,$3,$4,$5,$6)`
+	_, err = r.db.Exec(AddressQuery, user.Address.Id, user.Id, user.Address.Country, user.Address.City, user.Address.District, user.Address.PostalCode)
 	if err != nil {
 		log.Panicf("%s\n%s", "Error while inserting to table addresses", err)
 	}
@@ -31,20 +31,21 @@ func (r *userRepo) Create(user *pb.User) (*pb.User, error) {
 	return user, nil
 }
 func (r *userRepo) GetByID(ID string) (*pb.User, error) {
-	a := pb.User{}
-	GetUsers := `SELECT * FROM users WHERE id = $1`
-	err := r.db.QueryRow(GetUsers, ID).Scan(&a.ID, &a.FirstName, &a.LastName, pq.Array(&a.Email), &a.Bio, pq.Array(&a.PhoneNumber), &a.TypeID, &a.Status)
+	user := pb.User{}
+	GetUsers := `SELECT id, first_name, last_name, email, bio, phone_number, type_id, status FROM users WHERE id = $1`
+	err := r.db.QueryRow(GetUsers, ID).Scan(&user.Id, &user.FirstName, &user.LastName, pq.Array(&user.Email), &user.Bio, pq.Array(&user.PhoneNumber), &user.TypeId, &user.Status)
 	if err != nil {
-		log.Panicf("%s\n%s", "Error while geting data from table users", err)
+		return nil, err
 	}
 
-	GetAddresses := `SELECT id FROM addresses WHERE userid = $1`
-	err = r.db.QueryRow(GetAddresses, ID).Scan(&a.Addr.ID)
+	addr := pb.Address{}
+	GetAddresses := `SELECT id,user_id, city, district, country, postal_code FROM addresses WHERE user_id = $1`
+	err = r.db.QueryRow(GetAddresses, user.Id).Scan(&addr.Id, &addr.UserId, &addr.City, &addr.District, &addr.Country, &addr.PostalCode)
 	if err != nil {
-		log.Panicf("%s\n%s", "Error while geting data from table addresses", err)
+		return nil, err
 	}
-
-	return &a, err
+	user.Address = &addr
+	return &user, nil
 }
 func (r *userRepo) DeleteAll(ID string) (*pb.GetIdFromUser, error) {
 	_, err := r.db.Exec(`DELETE  FROM users WHERE id = $1`, ID)

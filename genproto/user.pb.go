@@ -27,15 +27,15 @@ var _ = math.Inf
 const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
 type User struct {
-	ID                   string   `protobuf:"bytes,1,opt,name=ID,proto3" json:"ID"`
-	FirstName            string   `protobuf:"bytes,2,opt,name=FirstName,proto3" json:"FirstName"`
-	LastName             string   `protobuf:"bytes,3,opt,name=LastName,proto3" json:"LastName"`
-	Email                []string `protobuf:"bytes,4,rep,name=Email,proto3" json:"Email"`
-	Bio                  string   `protobuf:"bytes,5,opt,name=Bio,proto3" json:"Bio"`
-	PhoneNumber          []string `protobuf:"bytes,6,rep,name=PhoneNumber,proto3" json:"PhoneNumber"`
-	TypeID               int64    `protobuf:"varint,7,opt,name=TypeID,proto3" json:"TypeID"`
-	Status               bool     `protobuf:"varint,8,opt,name=Status,proto3" json:"Status"`
-	Addr                 *Address `protobuf:"bytes,9,opt,name=Addr,proto3" json:"Addr"`
+	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
+	FirstName            string   `protobuf:"bytes,2,opt,name=first_name,json=firstName,proto3" json:"first_name"`
+	LastName             string   `protobuf:"bytes,3,opt,name=last_name,json=lastName,proto3" json:"last_name"`
+	Email                []string `protobuf:"bytes,4,rep,name=email,proto3" json:"email"`
+	Bio                  string   `protobuf:"bytes,5,opt,name=bio,proto3" json:"bio"`
+	PhoneNumber          []string `protobuf:"bytes,6,rep,name=phone_number,json=phoneNumber,proto3" json:"phone_number"`
+	TypeId               int64    `protobuf:"varint,7,opt,name=type_id,json=typeId,proto3" json:"type_id"`
+	Status               bool     `protobuf:"varint,8,opt,name=status,proto3" json:"status"`
+	Address              *Address `protobuf:"bytes,9,opt,name=address,proto3" json:"address"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -74,9 +74,9 @@ func (m *User) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_User proto.InternalMessageInfo
 
-func (m *User) GetID() string {
+func (m *User) GetId() string {
 	if m != nil {
-		return m.ID
+		return m.Id
 	}
 	return ""
 }
@@ -116,9 +116,9 @@ func (m *User) GetPhoneNumber() []string {
 	return nil
 }
 
-func (m *User) GetTypeID() int64 {
+func (m *User) GetTypeId() int64 {
 	if m != nil {
-		return m.TypeID
+		return m.TypeId
 	}
 	return 0
 }
@@ -130,20 +130,20 @@ func (m *User) GetStatus() bool {
 	return false
 }
 
-func (m *User) GetAddr() *Address {
+func (m *User) GetAddress() *Address {
 	if m != nil {
-		return m.Addr
+		return m.Address
 	}
 	return nil
 }
 
 type Address struct {
-	ID                   string   `protobuf:"bytes,1,opt,name=ID,proto3" json:"ID"`
-	UserID               string   `protobuf:"bytes,2,opt,name=UserID,proto3" json:"UserID"`
-	Country              string   `protobuf:"bytes,3,opt,name=Country,proto3" json:"Country"`
-	City                 string   `protobuf:"bytes,4,opt,name=City,proto3" json:"City"`
-	District             string   `protobuf:"bytes,5,opt,name=District,proto3" json:"District"`
-	PostalCode           int64    `protobuf:"varint,6,opt,name=PostalCode,proto3" json:"PostalCode"`
+	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
+	UserId               string   `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id"`
+	Country              string   `protobuf:"bytes,3,opt,name=country,proto3" json:"country"`
+	City                 string   `protobuf:"bytes,4,opt,name=city,proto3" json:"city"`
+	District             string   `protobuf:"bytes,5,opt,name=district,proto3" json:"district"`
+	PostalCode           int64    `protobuf:"varint,6,opt,name=postal_code,json=postalCode,proto3" json:"postal_code"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -182,16 +182,16 @@ func (m *Address) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_Address proto.InternalMessageInfo
 
-func (m *Address) GetID() string {
+func (m *Address) GetId() string {
 	if m != nil {
-		return m.ID
+		return m.Id
 	}
 	return ""
 }
 
-func (m *Address) GetUserID() string {
+func (m *Address) GetUserId() string {
 	if m != nil {
-		return m.UserID
+		return m.UserId
 	}
 	return ""
 }
@@ -225,7 +225,7 @@ func (m *Address) GetPostalCode() int64 {
 }
 
 type GetIdFromUser struct {
-	ID                   string   `protobuf:"bytes,1,opt,name=ID,proto3" json:"ID"`
+	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -264,9 +264,9 @@ func (m *GetIdFromUser) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_GetIdFromUser proto.InternalMessageInfo
 
-func (m *GetIdFromUser) GetID() string {
+func (m *GetIdFromUser) GetId() string {
 	if m != nil {
-		return m.ID
+		return m.Id
 	}
 	return ""
 }
@@ -280,31 +280,32 @@ func init() {
 func init() { proto.RegisterFile("user.proto", fileDescriptor_116e343673f7ffaf) }
 
 var fileDescriptor_116e343673f7ffaf = []byte{
-	// 378 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x6c, 0x92, 0xd1, 0x8a, 0xd3, 0x40,
-	0x18, 0x85, 0x9d, 0x26, 0x9b, 0x34, 0x7f, 0x59, 0x59, 0x7e, 0x65, 0x19, 0x16, 0x89, 0xb1, 0x57,
-	0xc1, 0x8b, 0xbd, 0x58, 0xf1, 0x01, 0xb6, 0x89, 0xbb, 0x04, 0xa4, 0x94, 0x54, 0x1f, 0x20, 0x6d,
-	0x7e, 0x30, 0x90, 0x74, 0xca, 0xcc, 0x44, 0xc8, 0x6b, 0x78, 0x25, 0xf8, 0x42, 0x5e, 0xfa, 0x08,
-	0x52, 0xaf, 0x7d, 0x07, 0x99, 0xe9, 0x58, 0x5b, 0xec, 0xdd, 0x39, 0xdf, 0x39, 0x10, 0xce, 0x9f,
-	0x01, 0xe8, 0x15, 0xc9, 0xdb, 0xad, 0x14, 0x5a, 0xa0, 0x6f, 0xf4, 0xf4, 0x37, 0x03, 0xff, 0xa3,
-	0x22, 0x89, 0x4f, 0x61, 0x54, 0xe4, 0x9c, 0x25, 0x2c, 0x8d, 0xca, 0x51, 0x91, 0xe3, 0x0b, 0x88,
-	0x1e, 0x1a, 0xa9, 0xf4, 0xbc, 0xea, 0x88, 0x8f, 0x2c, 0xfe, 0x07, 0xf0, 0x06, 0xc6, 0xef, 0x2b,
-	0x17, 0x7a, 0x36, 0x3c, 0x78, 0x7c, 0x0e, 0x17, 0xef, 0xba, 0xaa, 0x69, 0xb9, 0x9f, 0x78, 0x69,
-	0x54, 0xee, 0x0d, 0x5e, 0x81, 0x37, 0x6b, 0x04, 0xbf, 0xb0, 0x65, 0x23, 0x31, 0x81, 0xc9, 0xe2,
-	0x93, 0xd8, 0xd0, 0xbc, 0xef, 0x56, 0x24, 0x79, 0x60, 0xdb, 0xc7, 0x08, 0xaf, 0x21, 0xf8, 0x30,
-	0x6c, 0xa9, 0xc8, 0x79, 0x98, 0xb0, 0xd4, 0x2b, 0x9d, 0x33, 0x7c, 0xa9, 0x2b, 0xdd, 0x2b, 0x3e,
-	0x4e, 0x58, 0x3a, 0x2e, 0x9d, 0xc3, 0x57, 0xe0, 0xdf, 0xd7, 0xb5, 0xe4, 0x51, 0xc2, 0xd2, 0xc9,
-	0xdd, 0xe5, 0xad, 0x5d, 0x6b, 0x08, 0x29, 0x55, 0xda, 0x68, 0xfa, 0x8d, 0x41, 0xe8, 0xc8, 0x7f,
-	0x93, 0xaf, 0x21, 0x30, 0xa7, 0x28, 0x72, 0xb7, 0xd7, 0x39, 0xe4, 0x10, 0x66, 0xa2, 0xdf, 0x68,
-	0x39, 0xb8, 0xad, 0x7f, 0x2d, 0x22, 0xf8, 0x59, 0xa3, 0x07, 0xee, 0x5b, 0x6c, 0xb5, 0x39, 0x4d,
-	0xde, 0x28, 0x2d, 0x9b, 0xb5, 0x76, 0x6b, 0x0f, 0x1e, 0x63, 0x80, 0x85, 0x50, 0xba, 0x6a, 0x33,
-	0x51, 0x13, 0x0f, 0xec, 0xa8, 0x23, 0x32, 0x7d, 0x09, 0x97, 0x8f, 0xa4, 0x8b, 0xfa, 0x41, 0x8a,
-	0xee, 0xdc, 0x5f, 0xb9, 0xfb, 0xc2, 0x60, 0x62, 0x82, 0x25, 0xc9, 0xcf, 0xcd, 0x9a, 0x30, 0x81,
-	0x20, 0x93, 0x54, 0x69, 0x42, 0xd8, 0xaf, 0x35, 0xe1, 0xcd, 0x91, 0xc6, 0xd7, 0x10, 0x3e, 0x92,
-	0x9e, 0x0d, 0x45, 0x8e, 0xcf, 0xf6, 0xf8, 0xe4, 0x0b, 0x27, 0xdd, 0xb7, 0x10, 0xe5, 0xd4, 0x92,
-	0xa6, 0xfb, 0xb6, 0x3d, 0xdf, 0x3e, 0x07, 0x67, 0x57, 0xdf, 0x77, 0x31, 0xfb, 0xb1, 0x8b, 0xd9,
-	0xcf, 0x5d, 0xcc, 0xbe, 0xfe, 0x8a, 0x9f, 0xac, 0x02, 0xfb, 0xc4, 0xde, 0xfc, 0x09, 0x00, 0x00,
-	0xff, 0xff, 0x6a, 0xd3, 0xe6, 0x61, 0x70, 0x02, 0x00, 0x00,
+	// 399 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x6c, 0x92, 0xcd, 0x6e, 0xd3, 0x40,
+	0x14, 0x85, 0x99, 0xc4, 0xb5, 0xe3, 0x1b, 0x8a, 0xaa, 0x0b, 0xa2, 0xa3, 0x22, 0x52, 0x93, 0x0d,
+	0x16, 0x8b, 0x2e, 0x8a, 0x78, 0x80, 0xfe, 0x88, 0x2a, 0x9b, 0x2e, 0x8c, 0x58, 0x47, 0x13, 0xcf,
+	0x45, 0x8c, 0x64, 0x7b, 0xac, 0x99, 0x31, 0x92, 0x5f, 0x83, 0x15, 0x1b, 0xde, 0x87, 0x25, 0x8f,
+	0x80, 0xc2, 0x43, 0xb0, 0x45, 0x33, 0x76, 0x10, 0x51, 0xb3, 0x3b, 0xe7, 0x3b, 0xc7, 0xba, 0x3a,
+	0xf2, 0x00, 0x74, 0x96, 0xcc, 0x45, 0x6b, 0xb4, 0xd3, 0x18, 0x79, 0xbd, 0xfc, 0xc3, 0x20, 0xfa,
+	0x68, 0xc9, 0xe0, 0x13, 0x98, 0x28, 0xc9, 0x59, 0xc6, 0xf2, 0xb4, 0x98, 0x28, 0x89, 0x2f, 0x01,
+	0x3e, 0x29, 0x63, 0xdd, 0xba, 0x11, 0x35, 0xf1, 0x49, 0xe0, 0x69, 0x20, 0xf7, 0xa2, 0x26, 0x7c,
+	0x01, 0x69, 0x25, 0x76, 0xe9, 0x34, 0xa4, 0x33, 0x0f, 0x42, 0xf8, 0x0c, 0x8e, 0xa8, 0x16, 0xaa,
+	0xe2, 0x51, 0x36, 0xcd, 0xd3, 0x62, 0x30, 0x78, 0x02, 0xd3, 0x8d, 0xd2, 0xfc, 0x28, 0x94, 0xbd,
+	0xc4, 0x57, 0xf0, 0xb8, 0xfd, 0xac, 0x1b, 0x5a, 0x37, 0x5d, 0xbd, 0x21, 0xc3, 0xe3, 0x50, 0x9f,
+	0x07, 0x76, 0x1f, 0x10, 0x9e, 0x42, 0xe2, 0xfa, 0x96, 0xd6, 0x4a, 0xf2, 0x24, 0x63, 0xf9, 0xb4,
+	0x88, 0xbd, 0x5d, 0x49, 0x7c, 0x0e, 0xb1, 0x75, 0xc2, 0x75, 0x96, 0xcf, 0x32, 0x96, 0xcf, 0x8a,
+	0xd1, 0xe1, 0x6b, 0x48, 0x84, 0x94, 0x86, 0xac, 0xe5, 0x69, 0xc6, 0xf2, 0xf9, 0xe5, 0xf1, 0x45,
+	0x18, 0x7d, 0x35, 0xc0, 0x62, 0x97, 0x2e, 0xbf, 0x33, 0x48, 0x46, 0xf8, 0x60, 0xfc, 0x29, 0x24,
+	0xfe, 0x23, 0x7f, 0x75, 0x58, 0x1e, 0x7b, 0xbb, 0x92, 0xc8, 0x21, 0x29, 0x75, 0xd7, 0x38, 0xd3,
+	0x8f, 0xa3, 0x77, 0x16, 0x11, 0xa2, 0x52, 0xb9, 0x9e, 0x47, 0x01, 0x07, 0x8d, 0x67, 0x30, 0x93,
+	0xca, 0x3a, 0xa3, 0x4a, 0x37, 0xce, 0xfe, 0xe7, 0xf1, 0x1c, 0xe6, 0xad, 0xb6, 0x4e, 0x54, 0xeb,
+	0x52, 0x4b, 0xe2, 0x71, 0x18, 0x07, 0x03, 0xba, 0xd1, 0x92, 0x96, 0xe7, 0x70, 0x7c, 0x47, 0x6e,
+	0x25, 0xdf, 0x1b, 0x5d, 0x1f, 0xfa, 0x43, 0x97, 0x5f, 0x19, 0xcc, 0x7d, 0xf0, 0x81, 0xcc, 0x17,
+	0x55, 0x12, 0x66, 0x10, 0xdf, 0x18, 0x12, 0x8e, 0x10, 0x86, 0xc9, 0x3e, 0x3c, 0xfb, 0x4f, 0xe3,
+	0x1b, 0x48, 0xee, 0xc8, 0x5d, 0xf7, 0xab, 0x5b, 0x7c, 0x3a, 0xe0, 0xbd, 0x0b, 0x7b, 0xdd, 0x77,
+	0x90, 0xde, 0x52, 0x45, 0x8e, 0xae, 0xaa, 0xea, 0x70, 0xfb, 0x10, 0xbc, 0x3e, 0xf9, 0xb1, 0x5d,
+	0xb0, 0x9f, 0xdb, 0x05, 0xfb, 0xb5, 0x5d, 0xb0, 0x6f, 0xbf, 0x17, 0x8f, 0x36, 0x71, 0x78, 0x6e,
+	0x6f, 0xff, 0x06, 0x00, 0x00, 0xff, 0xff, 0x12, 0x15, 0xd3, 0x17, 0x7c, 0x02, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -474,11 +475,11 @@ func (m *User) MarshalTo(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if len(m.ID) > 0 {
+	if len(m.Id) > 0 {
 		dAtA[i] = 0xa
 		i++
-		i = encodeVarintUser(dAtA, i, uint64(len(m.ID)))
-		i += copy(dAtA[i:], m.ID)
+		i = encodeVarintUser(dAtA, i, uint64(len(m.Id)))
+		i += copy(dAtA[i:], m.Id)
 	}
 	if len(m.FirstName) > 0 {
 		dAtA[i] = 0x12
@@ -528,10 +529,10 @@ func (m *User) MarshalTo(dAtA []byte) (int, error) {
 			i += copy(dAtA[i:], s)
 		}
 	}
-	if m.TypeID != 0 {
+	if m.TypeId != 0 {
 		dAtA[i] = 0x38
 		i++
-		i = encodeVarintUser(dAtA, i, uint64(m.TypeID))
+		i = encodeVarintUser(dAtA, i, uint64(m.TypeId))
 	}
 	if m.Status {
 		dAtA[i] = 0x40
@@ -543,11 +544,11 @@ func (m *User) MarshalTo(dAtA []byte) (int, error) {
 		}
 		i++
 	}
-	if m.Addr != nil {
+	if m.Address != nil {
 		dAtA[i] = 0x4a
 		i++
-		i = encodeVarintUser(dAtA, i, uint64(m.Addr.Size()))
-		n1, err1 := m.Addr.MarshalTo(dAtA[i:])
+		i = encodeVarintUser(dAtA, i, uint64(m.Address.Size()))
+		n1, err1 := m.Address.MarshalTo(dAtA[i:])
 		if err1 != nil {
 			return 0, err1
 		}
@@ -574,17 +575,17 @@ func (m *Address) MarshalTo(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if len(m.ID) > 0 {
+	if len(m.Id) > 0 {
 		dAtA[i] = 0xa
 		i++
-		i = encodeVarintUser(dAtA, i, uint64(len(m.ID)))
-		i += copy(dAtA[i:], m.ID)
+		i = encodeVarintUser(dAtA, i, uint64(len(m.Id)))
+		i += copy(dAtA[i:], m.Id)
 	}
-	if len(m.UserID) > 0 {
+	if len(m.UserId) > 0 {
 		dAtA[i] = 0x12
 		i++
-		i = encodeVarintUser(dAtA, i, uint64(len(m.UserID)))
-		i += copy(dAtA[i:], m.UserID)
+		i = encodeVarintUser(dAtA, i, uint64(len(m.UserId)))
+		i += copy(dAtA[i:], m.UserId)
 	}
 	if len(m.Country) > 0 {
 		dAtA[i] = 0x1a
@@ -630,11 +631,11 @@ func (m *GetIdFromUser) MarshalTo(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if len(m.ID) > 0 {
+	if len(m.Id) > 0 {
 		dAtA[i] = 0xa
 		i++
-		i = encodeVarintUser(dAtA, i, uint64(len(m.ID)))
-		i += copy(dAtA[i:], m.ID)
+		i = encodeVarintUser(dAtA, i, uint64(len(m.Id)))
+		i += copy(dAtA[i:], m.Id)
 	}
 	if m.XXX_unrecognized != nil {
 		i += copy(dAtA[i:], m.XXX_unrecognized)
@@ -657,7 +658,7 @@ func (m *User) Size() (n int) {
 	}
 	var l int
 	_ = l
-	l = len(m.ID)
+	l = len(m.Id)
 	if l > 0 {
 		n += 1 + l + sovUser(uint64(l))
 	}
@@ -685,14 +686,14 @@ func (m *User) Size() (n int) {
 			n += 1 + l + sovUser(uint64(l))
 		}
 	}
-	if m.TypeID != 0 {
-		n += 1 + sovUser(uint64(m.TypeID))
+	if m.TypeId != 0 {
+		n += 1 + sovUser(uint64(m.TypeId))
 	}
 	if m.Status {
 		n += 2
 	}
-	if m.Addr != nil {
-		l = m.Addr.Size()
+	if m.Address != nil {
+		l = m.Address.Size()
 		n += 1 + l + sovUser(uint64(l))
 	}
 	if m.XXX_unrecognized != nil {
@@ -707,11 +708,11 @@ func (m *Address) Size() (n int) {
 	}
 	var l int
 	_ = l
-	l = len(m.ID)
+	l = len(m.Id)
 	if l > 0 {
 		n += 1 + l + sovUser(uint64(l))
 	}
-	l = len(m.UserID)
+	l = len(m.UserId)
 	if l > 0 {
 		n += 1 + l + sovUser(uint64(l))
 	}
@@ -742,7 +743,7 @@ func (m *GetIdFromUser) Size() (n int) {
 	}
 	var l int
 	_ = l
-	l = len(m.ID)
+	l = len(m.Id)
 	if l > 0 {
 		n += 1 + l + sovUser(uint64(l))
 	}
@@ -789,7 +790,7 @@ func (m *User) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field ID", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -817,7 +818,7 @@ func (m *User) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.ID = string(dAtA[iNdEx:postIndex])
+			m.Id = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 2:
 			if wireType != 2 {
@@ -981,9 +982,9 @@ func (m *User) Unmarshal(dAtA []byte) error {
 			iNdEx = postIndex
 		case 7:
 			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field TypeID", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field TypeId", wireType)
 			}
-			m.TypeID = 0
+			m.TypeId = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowUser
@@ -993,7 +994,7 @@ func (m *User) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.TypeID |= int64(b&0x7F) << shift
+				m.TypeId |= int64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -1020,7 +1021,7 @@ func (m *User) Unmarshal(dAtA []byte) error {
 			m.Status = bool(v != 0)
 		case 9:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Addr", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Address", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -1047,10 +1048,10 @@ func (m *User) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if m.Addr == nil {
-				m.Addr = &Address{}
+			if m.Address == nil {
+				m.Address = &Address{}
 			}
-			if err := m.Addr.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if err := m.Address.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -1110,7 +1111,7 @@ func (m *Address) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field ID", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -1138,11 +1139,11 @@ func (m *Address) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.ID = string(dAtA[iNdEx:postIndex])
+			m.Id = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 2:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field UserID", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field UserId", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -1170,7 +1171,7 @@ func (m *Address) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.UserID = string(dAtA[iNdEx:postIndex])
+			m.UserId = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 3:
 			if wireType != 2 {
@@ -1343,7 +1344,7 @@ func (m *GetIdFromUser) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field ID", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -1371,7 +1372,7 @@ func (m *GetIdFromUser) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.ID = string(dAtA[iNdEx:postIndex])
+			m.Id = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
