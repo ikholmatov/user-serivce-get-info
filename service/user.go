@@ -48,8 +48,8 @@ func (s *UserService) GetByID(ctx context.Context, req *pb.GetIdFromUser) (*pb.U
 
 	return user, err
 }
-func (s *UserService) DeleteAll(ctx context.Context, req *pb.GetIdFromUser) (*pb.GetIdFromUser, error) {
-	user, err := s.storage.User().DeleteAll(req.Id)
+func (s *UserService) DeleteByID(ctx context.Context, req *pb.GetIdFromUser) (*pb.GetIdFromUser, error) {
+	user, err := s.storage.User().DeleteByID(req.Id)
 	if err != nil {
 		s.logger.Error("Error while getting user info", l.Error(err))
 		return nil, status.Error(codes.Internal, "Error insert user")

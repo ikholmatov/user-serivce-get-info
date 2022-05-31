@@ -8,5 +8,5 @@ import (
 type UserStorageI interface {
 	Create(*pb.User) (*pb.User, error)
 	GetByID(ID string) (*pb.User, error)
-	DeleteAll(ID string) (*pb.GetIdFromUser, error)
+	DeleteByID(ID string) (*pb.GetIdFromUser, error)
 }
